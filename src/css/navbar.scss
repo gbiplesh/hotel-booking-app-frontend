@@ -1,0 +1,11 @@
+.navbar {
+  border-bottom: 1px solid;
+  width: 100%;
+
+  .active-nav {
+    // background-color: rgb(160, 159, 159);
+    border: solid 0.1px;
+    border-bottom: 0px;
+    color: inherit;
+  }
+}

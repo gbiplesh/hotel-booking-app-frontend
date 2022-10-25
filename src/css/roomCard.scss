@@ -1,0 +1,17 @@
+
+.card{
+  max-width: 345px;
+  background-color: #ffffff8c !important;
+  margin: 10px;
+
+  .card-image{
+    max-width: 315px;
+    object-fit: cover;
+  }
+
+  .card-button{
+    margin-left: 10px;
+    margin-bottom: 20px;
+     color: "inherit";
+  }
+}

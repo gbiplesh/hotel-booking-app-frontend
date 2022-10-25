@@ -1,0 +1,48 @@
+.choice-card{
+  background-color: #ffffff8c !important;
+  margin: 20px 0px;
+
+  .choice-title{
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    display: inline-block;
+    padding-left: 30px;
+  }
+  .label {
+    border-radius: 0px;
+    float: right;
+    margin: 20px 0px;
+    border: 1px solid;
+    padding: 6px;
+    font-weight: 300;
+  }
+  .flex-container{
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-evenly;
+    margin-top: 5vh;
+    .avatar {
+      width: 30px;
+      padding-left: 5px;
+      position: relative;
+      top: 8px;
+      opacity: 0.5;
+    }
+  }
+  .card-grid-container {
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+
+    .card-grid-item {
+      text-align: center;
+      // border: 1px solid black;
+      padding: 20px;
+
+    }
+
+  }
+
+}

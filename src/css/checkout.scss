@@ -1,0 +1,35 @@
+.papers{
+  background-color: #ffffff8c !important;
+  margin: 20px 0px;
+  
+  .flex-container{
+    display: flex;    
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 40px 0px;
+  }
+  
+  .headings{
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    padding-left: 55px;
+  }
+}
+
+.line {
+  border-left: solid 1px;
+  position: absolute;
+  margin: 9vh 0px;
+  top: 33%;
+  z-index: -5;
+  height: 50%;
+  background: transparent;
+  /* margin: -109px 14px; */
+  margin-bottom: 67vh;
+}
+
+.room-details td {
+  padding: 10px 0px;
+}

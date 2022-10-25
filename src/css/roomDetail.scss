@@ -1,0 +1,25 @@
+.room-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  div{
+    width: 100px;
+    height: 100px;
+    background: lightgray;
+    margin: 5px ;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+   img {
+    width: 50px;
+  }
+}
+
+.button-style {
+  color: #8e8d8a;
+  background-color: #e9807436;
+}

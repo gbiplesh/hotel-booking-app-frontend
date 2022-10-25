@@ -1,0 +1,22 @@
+.above-table{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-header{
+  background-color: whitesmoke;
+  .table-row {
+    background-color: #DBC993; 
+    font-weight:300;
+    th {
+      font-weight: 600;
+    }
+  }
+  .icons-cell{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
