@@ -21,8 +21,8 @@ const RoomDetail = () => {
 
             <h3>Description</h3>
             <p> 
-                Large ground floor room with a King bed with pillow top mattress and sofa.
-                Glass sliding door opens to your private balcony offering breathtaking views of the Manning River and Martin Bridge.
+                Large ground floor room with comfortable bed with pillow top mattress and sofa.
+                Glass sliding door opens to your private balcony offering breathtaking views of the Random River and Random Bridge.
                 White Linen and fluffy white towels are provided with this room.
             </p>
           </Grid>

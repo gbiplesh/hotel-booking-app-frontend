@@ -4,6 +4,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { TextField, Button } from '@material-ui/core';
+import { variables } from '../api/Variables';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +26,7 @@ export default function RoomModal(props) {
 
   const classes = useStyles();
   const [RoomType, setRoomType] = useState(props.roomType);
+  const [Image, setImage] = useState(props.image);
   const [People, setPeople] = useState(props.people);
   const [Available, setAvailable] = useState(props.available);
   const [Price, setPrice] = useState(props.price);
@@ -52,10 +55,12 @@ export default function RoomModal(props) {
               <div className="flex-container">
                 <TextField label="Id" name="id" value={props.roomId} disabled/><br/><br/>
                 <TextField required label="Room Type" name="roomType" placeholder={RoomType} onChange={(e) => setRoomType(e.target.value)}/><br/><br/>
+                <img width='200px' height='200px' style={{objectFit:'contain'}} src={variables.APP_IMAGEPATH + Image} alt={Image} /> <br/>
+                <TextField required name="image" placeholder={Image} type="file" onChange={(e) => {props.onUpload(e); setImage(e.target.files[0].name) }}/><br/><br/>
                 <TextField required label="People" name="people" placeholder={People} onChange={(e) => setPeople(e.target.value)}/><br/><br/>
                 <TextField required label="Available" name="available" placeholder={Available} onChange={(e) => setAvailable(e.target.value)}/><br/><br/>
                 <TextField required label="Price" name="price" placeholder={Price} onChange={(e) => setPrice(e.target.value)}/><br/><br/>
-                <Button onClick={() => props.buttonOnClick(props.roomId, RoomType, Price, People, Available)} variant="outlined" color="secondary">
+                <Button onClick={() => props.buttonOnClick(props.roomId, RoomType, Image, Price, People, Available)} variant="outlined" color="secondary">
                   {props.modalButtonText}
                 </Button><br/>
               </div>

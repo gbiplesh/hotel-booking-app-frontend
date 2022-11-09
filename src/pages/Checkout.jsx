@@ -1,20 +1,14 @@
-import React, {useState, Component, useRef} from 'react';
-import { Button, Checkbox,Container, FormControl, FormControlLabel, Grid, Input, Paper, Radio, RadioGroup, TextField } from "@material-ui/core";
+import React, {useState, useRef} from 'react';
+import { Checkbox,Container, FormControl, Grid, Paper, TextField } from "@material-ui/core";
 import "./../css/checkout.scss";
 import useStateContext from '../hooks/useStateContext';
 import Moment from "react-moment";
 import { variables } from '../api/Variables';
-import { useNavigate } from 'react-router-dom';
 
 
 const Checkout = () => {
   
-  const [value, setValue] = useState('card');
   const { context, setContext } = useStateContext();
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
 
   const checkInDate = context.checkIn;
   const checkOutDate = context.checkOut;
@@ -22,13 +16,11 @@ const Checkout = () => {
   const available = context.available;
 
   function priceTotal(rate, count) {
-    let gst = 0.0909;
     let result = rate * count;
     return result ;
   }
 
   const formRef = useRef();
-  const navigate = useNavigate();
   
   function submitCheckout(){
     const formData = new FormData(formRef.current);
@@ -114,34 +106,12 @@ const Checkout = () => {
                       type="date" 
                       label="Date of Birth" 
                       InputLabelProps={{ shrink: true, }}
+                      style={{minWidth: "29vh"}}
                       />
                     <TextField required id="verificationId" label="License ID/Photo ID" name="verificationId"/>
                   </div>
                 </FormControl>
 
-              
-
-              {/* <p className="headings">Payment Methods</p>
-              <FormControl component="div" fullWidth className="flex-container">
-                  <RadioGroup aria-label="gender" name="method" value={value} onChange={handleChange}>
-                    <FormControlLabel value="card" control={<Radio />} label="Credit / Debit Card" />
-                    <FormControlLabel value="paypal" control={<Radio />} label="PayPal" />
-                  </RadioGroup>
-              </FormControl> */}
-
-              {/* <form autoComplete="off">
-                <div className="flex-container">
-                  <TextField required id="card-number" label="Card Number" style={{minWidth: "27vw"}}/>
-                </div>
-                <div className="flex-container" style={{justifyContent: "center"}}> 
-                  <TextField required id="expiry" label="MM/YY" style={{margin: "0px 10px"}} />
-                  <TextField required id="cvv" label="CVV"  style={{margin: "0px 10px"}} />
-                </div>
-                <div className="flex-container" style={{padding: "0px 60px"}}>
-                  <TextField required id="name" label="Name on Card" fullWidth  style={{maxWidth: "27vw"}} />
-                </div>
-              </form> */}
-              
 
             </Grid>
 
@@ -203,7 +173,7 @@ const Checkout = () => {
           />
           <span>I agree with the terms and conditions of The Great Hotel Random.</span>
 
-          <button variant="outlined" style={{float:'right'}} color="secondary" onClick={submitCheckout}>
+          <button id="finish" variant="outlined" style={{float:'right'}} color="secondary" onClick={submitCheckout}>
             Finish your bookings
           </button>
         </div>

@@ -1,29 +1,72 @@
-import React, {useState, useContext } from 'react';
-import { Button, CardContent, CardActions, Chip, Grid, Paper, TextField, MenuItem } from '@material-ui/core';
+import React, {useState } from 'react';
+import { Button, Paper, TextField } from '@material-ui/core';
 import "./../css/choiceCard.scss";
 import { Bedside, People } from "./../assets/index";
-import useStateContext, {stateContext} from '../hooks/useStateContext';
+import useStateContext from '../hooks/useStateContext';
 
 const ChoiceCard = () => {
 
   
   
   const [Rooms, setRooms] = useState(0);
+  const [CheckIn, setCheckIn] = useState('');
   const { context, setContext } = useStateContext();
   
-  const handleChange = (event) => {
-    setRooms(event.target.value);
-    setContext({ roomQuantity: event.target.value });
+  const handleRoomSelect = (event) => {
+    if(event.target.value <= context.available && event.target.value > 0 ){
+      setRooms(event.target.value);
+      setContext({ roomQuantity: event.target.value });
+    }else{
+      alert('Invalid Room Amount! Only ' + context.available + ' rooms available.' )
+    }
   };
 
+  function checkDate(giveDate) {
+    var q = new Date();
+    var m = q.getMonth();
+    var d = q.getDay();
+    var y = q.getFullYear();
+
+    var todayDate = new Date(y,m,d);
+    var givenDate=new Date(giveDate);
+
+    if(todayDate < givenDate)
+    {
+      return true;
+    }
+    else
+    {
+      return false; 
+    }
+  }
+
   const handleCheckIn = e => {
-    console.log(e.target.value);
-    setContext({ checkIn: e.target.value })
+    // if(e.target.value <= Date.now() )
+    if(checkDate(e.target.value) === true ){
+      setContext({ checkIn: e.target.value })
+      setCheckIn((e.target.value));
+    } else {
+      alert("Invalid Date! Please enter a date from tomorrow.");
+    }
+
   }
 
   const handleCheckOut = e => {
-    console.log(e.target.value);
-    setContext({ checkOut: e.target.value })
+    if(checkDate(e.target.value) === false ){
+      alert("Invalid Date! Please enter a date from tomorrow.");
+    } else if (new Date(e.target.value) < new Date(CheckIn)) {
+      alert("Invalid Date! Please enter a date after Check-In Date.");
+    } else {
+      setContext({ checkOut: e.target.value });
+    }
+  }
+
+  const handleSubmit = e => {
+    if(Rooms == null){
+      alert('Enter room amount, please!')
+    }else{
+      window.location.assign("/checkout");
+    }
   }
 
   return ( 
@@ -34,7 +77,7 @@ const ChoiceCard = () => {
         variant="outlined"
         className="choice-card" 
       >
-        <form action="/checkout">
+        <form action="/checkout" onSubmit={handleSubmit}>
             <div style={{padding: "20px"}}>
               <div>
                 <p className="choice-title">{context.roomType} Room</p>
@@ -54,22 +97,10 @@ const ChoiceCard = () => {
                       <TextField
                         id="room-quantity"
                         name="roomQuantity"
-                        select
                         label="Rooms"
-                        value={Rooms}
-                        onChange={handleChange}
+                        onChange={handleRoomSelect}
                         helperText="Please select your room numbers"
-                      >
-                          <MenuItem key={1} value={1}>
-                            1
-                          </MenuItem>
-                          <MenuItem key={1} value={2}>
-                            2
-                          </MenuItem>
-                          <MenuItem key={1} value={3}>
-                            3
-                          </MenuItem>
-                      </TextField>
+                      />
                   </div>
                 </div>
                 <div className="flex-container">

@@ -1,3 +1,4 @@
 export const variables={
-  API_URL: "http://localhost:38035/",
+  API_URL: "https://randomhotelapi.azurewebsites.net/",
+  APP_IMAGEPATH: "https://randomhotelapi.azurewebsites.net/ImageFiles/"
 }

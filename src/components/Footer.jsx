@@ -1,9 +1,12 @@
+import { Email, Facebook, Instagram } from '@material-ui/icons';
 import React from 'react';
 
 const Footer = () => {
   return ( 
     <>
-      <p style={{float: 'right', margin: '15px'}}>Facebook | Instagram | Gmail</p>
+      <p style={{ margin: '60px', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <Facebook/> &nbsp; &nbsp; <Instagram/> &nbsp; &nbsp; <Email/>
+      </p>
     </> 
     
   );

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Button, CardActions, CardContent, Paper } from '@material-ui/core';
+import { Button, CardActions, CardContent, Container, Paper } from '@material-ui/core';
 import useStateContext from '../hooks/useStateContext';
 import './../css/roomCard.scss';  
+import { variables } from '../api/Variables';
+import ImageModal from './ImageModal';
 
 
 const RoomCard = (props) => {
@@ -17,11 +19,20 @@ const RoomCard = (props) => {
           variant="outlined" 
           className="card">
             <CardContent>
-              <p>{props.type}</p>
-              <img src="https://www.tareemotorinn.com.au/content/room/full/Deluxe_King_Room___Taree_Motor_Inn-67-16.jpg"
-                    alt="alt" 
-                    className="card-image" />
-              <p>${props.price} per day</p>
+              <Container>
+                <p>{props.type}</p>
+                <ImageModal
+                  image={props.image}
+                  element={
+                    <img src={variables.APP_IMAGEPATH + props.image}
+                    alt={props.image} 
+                    className="card-image"
+                    style={{objectFit:'contain', width: 'inherit', height: 'auto'}} 
+                    />
+                  }
+                  />
+                <p>${props.price} per day</p>
+              </Container>
             </CardContent>
             <CardActions>
               <a href="/room-detail" style={{textDecoration: "none"}}>

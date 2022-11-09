@@ -1,5 +1,5 @@
-import React, {Component, createRef, useState} from 'react';
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, Modal, Button } from '@material-ui/core';
+import React, {Component} from 'react';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, Button } from '@material-ui/core';
 import {Delete, Edit} from '@material-ui/icons';
 import { variables } from '../api/Variables';
 import BookingModal from "./BookingModal";

@@ -1,8 +1,6 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import { Container, Paper } from '@material-ui/core';
-import useStateContext, { stateContext } from '../hooks/useStateContext';
-import { variables } from '../api/Variables';
-import { useLocation} from "react-router-dom";
+import useStateContext from '../hooks/useStateContext';
 
 
 const Booked = () =>  {
@@ -17,10 +15,7 @@ const Booked = () =>  {
                 <h3>Your booking is successful. Welcome abroad, {context.firstName}.  </h3>
               </div>
             </Paper>
-
-          </Container>
-
-        
+          </Container>        
         </>
       );
     

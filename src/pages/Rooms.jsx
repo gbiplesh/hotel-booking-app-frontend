@@ -1,8 +1,7 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import './../css/rooms.scss'
 import { Container } from '@material-ui/core';
 import RoomCard from '../components/RoomCard';
-import roomData  from "../json/roomType";
 import { variables } from '../api/Variables';
 import { response } from 'har-validator';
 
@@ -43,7 +42,7 @@ class Rooms extends Component {
           <div className="grid">
             {
               rooms.map(room => (
-                <RoomCard type={room.RoomType} price={room.Price} id={room.Id} available={room.Available} people={room.Beds} />
+                <RoomCard type={room.RoomType} image={room.Image} price={room.Price} id={room.Id} available={room.Available} people={room.Beds} />
               ))
             }
           </div>

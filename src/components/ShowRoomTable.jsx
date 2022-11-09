@@ -1,9 +1,10 @@
-import React, {Component, createRef, useState} from 'react';
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, Modal, Button } from '@material-ui/core';
+import React, {Component} from 'react';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, Button } from '@material-ui/core';
 import {Delete, Edit} from '@material-ui/icons';
 import { variables } from '../api/Variables';
 import RoomModal from "./RoomModal";
 import "./../css/showTables.scss";
+import ImageModal from './ImageModal';
 
 
 class ShowRoomTable extends Component {
@@ -15,6 +16,9 @@ class ShowRoomTable extends Component {
       rooms:[],
     }
   }
+
+  photoFileName = "random.png";
+  imagesrc = variables.APP_IMAGEPATH + this.photoFileName;
 
   //Method to resfresh the Room data from the Get API method
   refreshList(){
@@ -49,7 +53,7 @@ class ShowRoomTable extends Component {
 
   }
   
-  triggerEditRoom(id, roomType, price, people, available){
+  triggerEditRoom(id, roomType, image, price, people, available){
     // e.preventDefault();
     // props.setOpen(false);
     
@@ -62,6 +66,7 @@ class ShowRoomTable extends Component {
       body:JSON.stringify({
         "Id": id, 
         "RoomType": roomType,
+        "Image": image,
         "Price": price,
         "Beds": people, // beds is the name of the column in database which means the number of people that can fit in a room. 
         "Available": available,
@@ -76,10 +81,34 @@ class ShowRoomTable extends Component {
       alert('Room Data Updated!');
       window.location.reload();
   }
+  
+  handleImageUpload(e) {
+    // e.preventDefault();
+    this.photoFileName = e.target.files[0].name; 
+    console.log(this.photoFileName);
+    const formData = new FormData();
+    formData.append(
+      "myFile",
+      e.target.files[0],
+      e.target.files[0].name
+    );
 
-  triggerAddRoom(id, roomType, price, people, available) {
+    fetch(variables.API_URL+ 'api/rooms/savefile',{
+      method: 'POST',
+      body: formData
+    })
+    .then(res=>res.json())
+    .then((result)=>{
+      this.imagesrc = variables.APP_IMAGEPATH + result;
+    },
+    (error)=>{
+      alert('Failed');
+    })
+  }
+
+  triggerAddRoom(id, roomType, image, price, people, available) {
     
-    console.log(id, roomType, price, people, available);
+    // this.handleImageUpload(image);
   
     fetch(variables.API_URL+'api/rooms',{
       method:'POST',
@@ -90,6 +119,7 @@ class ShowRoomTable extends Component {
       body:JSON.stringify({
         // "Id": id, 
         "RoomType": roomType,
+        "Image": image,
         "Price": price,
         "Beds": people, // beds is the name of the column in database which means the number of people that can fit in a room. 
         "Available": available,
@@ -97,13 +127,15 @@ class ShowRoomTable extends Component {
       })
       .then(res=>res.json())
       .then((result)=>{
-        this.refreshList();
+        // this.refreshList();
+        // alert(result);
       },(error)=>{
         alert('Failed');
       })
       alert('Room Data Added!');
       window.location.reload();
-}  
+  }  
+
 
   render() {
     
@@ -118,7 +150,9 @@ class ShowRoomTable extends Component {
               icon="Add Room" 
               modalButtonText="Add" 
               roomId="Id will be automated."
+              image = {this.imagesrc}
               buttonOnClick={this.triggerAddRoom.bind(this)}
+              onUpload={this.handleImageUpload.bind(this)}
               />
           </div>
           
@@ -128,6 +162,7 @@ class ShowRoomTable extends Component {
                 <TableRow className="table-row">
                   <TableCell align="center">Id</TableCell>
                   <TableCell align="center">Room Type</TableCell>
+                  <TableCell align="center">Image</TableCell>
                   <TableCell align="center">People</TableCell>
                   <TableCell align="center">Available</TableCell>
                   <TableCell align="center">Price</TableCell>
@@ -143,6 +178,14 @@ class ShowRoomTable extends Component {
                           >
                           <TableCell align="center">{room.Id}</TableCell>
                           <TableCell align="center">{room.RoomType}</TableCell>
+                          <TableCell align="center">
+                            <ImageModal 
+                            image={room.Image}
+                            element={
+                              <span>{room.Image}</span>
+                            }
+                            />
+                            </TableCell>
                           <TableCell align="center">{room.Beds}</TableCell>
                           <TableCell align="center">{room.Available}</TableCell>
                           <TableCell align="center">{room.Price}</TableCell>
@@ -152,8 +195,10 @@ class ShowRoomTable extends Component {
                                     room={room}
                                     modalButtonText="Edit" 
                                     buttonOnClick={this.triggerEditRoom.bind(this)} 
+                                    onUpload={this.handleImageUpload.bind(this)}
                                     roomId={room.Id} 
                                     roomType={room.RoomType} 
+                                    image={room.Image} 
                                     people={room.Beds} 
                                     available={room.Available} 
                                     price={room.Price} 

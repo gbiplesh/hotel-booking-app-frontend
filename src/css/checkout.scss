@@ -24,7 +24,7 @@
   margin: 9vh 0px;
   top: 33%;
   z-index: -5;
-  height: 50%;
+  height: 40%;
   background: transparent;
   /* margin: -109px 14px; */
   margin-bottom: 67vh;
@@ -32,4 +32,24 @@
 
 .room-details td {
   padding: 10px 0px;
+}
+
+#finish {
+      padding: 3px 9px;
+      font-size: 0.8125rem;
+      color: #8E8D8A;
+      border: 1px solid rgba(0, 0, 0, 0.23);
+      min-width: 64px;
+      box-sizing: border-box;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 500;
+      line-height: 1.75;
+      letter-spacing: 0.02857em;
+      text-transform: uppercase;
+      background-color: transparent;
+    }
+
+#finish:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.04);
 }

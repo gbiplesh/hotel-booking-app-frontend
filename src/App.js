@@ -4,7 +4,7 @@ import './css/navbar.scss';
 import './css/home.scss';
 
 // elements
-import { Route, Switch, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -23,7 +23,7 @@ import AdminDashboard from './pages/AdminDashboard';
 function App() {
   return (
       <div>
-        <h1 align="center" style={{ fontWeight: "600" }}>The Great Hotel Random</h1>
+        <h1 align="center" style={{ fontWeight: "600" }}>The Great Random Hotel</h1>
         <NavBar />
     
           <Routes>

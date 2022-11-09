@@ -12,7 +12,9 @@ const getFreshContext = ()=> {
       price: 0,
       people: 0,
       available: 0,
-      firstName: ''
+      firstName: '',
+      adminUserName: 'admin',
+      adminLoggedIn: false
     }))}
   return JSON.parse(localStorage.getItem('context'));
 } 

@@ -5,13 +5,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ContextProvider } from './hooks/useStateContext';
+import { AuthProvider } from './hooks/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
-      <Router>
-        <App />
-      </Router>
+      <AuthProvider>
+        <Router>
+          <App />
+        </Router>
+      </AuthProvider>
     </ContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
